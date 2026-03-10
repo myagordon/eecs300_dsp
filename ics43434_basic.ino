@@ -7,9 +7,9 @@ int PIN_I2S_BCLK = 25; //bit clock line: ESP32 outputs this clock to the mic
 int PIN_I2S_WS   = 26; //word select LRCLK tells I2S device whether the current time slot is L or R channel
 int PIN_I2S_SD   = 22; //serial data line
 
-int SAMPLE_RATE = 16000; //consider increasing this down the line for sound direction estimation
+int SAMPLE_RATE = 16000; //consider increasing this down the line for sound direction estimation, fine for now
 
-int32_t sampleBuffer[128]; //ESP32 I2S driver is commonly set up to read into 32-bit
+int32_t sampleBuffer[128]; //ESP32 I2S driver is set up to read into 32-bit
 
 void setup() {
   Serial.begin(115200);
