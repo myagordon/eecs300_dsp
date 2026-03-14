@@ -6,9 +6,9 @@
 
 i2s_port_t I2S_PORT = I2S_NUM_0;
 
-int PIN_I2S_BCLK = 25; //bit clock line: ESP32 outputs this clock to the mic
-int PIN_I2S_WS   = 26; //word select LRCLK tells I2S device whether the current time slot is L or R channel
-int PIN_I2S_SD   = 22; //serial data line
+int PIN_I2S_BCLK = 25; // bit clock line
+int PIN_I2S_WS   = 26; // word select / LRCLK
+int PIN_I2S_SD   = 22; // serial data line
 
 int SAMPLE_RATE = 16000;
 
@@ -19,6 +19,9 @@ double vImag[NUM_SAMPLES];
 
 ArduinoFFT<double> FFT = ArduinoFFT<double>(vReal, vImag, NUM_SAMPLES, SAMPLING_FREQ);
 
+void fftsetup();
+void fftloop();
+
 void setup() {
   fftsetup();
 }
@@ -27,7 +30,7 @@ void loop() {
   fftloop();
 }
 
-//now configures digital mic instead of analog
+// now configures digital mic instead of analog
 void fftsetup() {
   Serial.begin(115200);
   delay(1000);
@@ -53,12 +56,12 @@ void fftsetup() {
     .data_in_num = PIN_I2S_SD
   };
 
-  //config i2s peripheral
   i2s_driver_install(I2S_PORT, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_PORT, &pin_config);
   i2s_zero_dma_buffer(I2S_PORT);
 }
 
+void fftloop() {
   size_t bytesRead = 0;
 
   i2s_read(
@@ -89,8 +92,8 @@ void fftsetup() {
   int global_max_index = 0;
   double target_max_mag = 0;
   int target_max_index = 0;
- 
-  //changed band to cover 600-1500hz
+
+  // changed band to cover 600-1500 Hz
   int start_index = (600 * NUM_SAMPLES) / SAMPLING_FREQ;
   int end_index = (1500 * NUM_SAMPLES) / SAMPLING_FREQ;
 
