@@ -2,7 +2,7 @@
 
 // Sampling and FFT stuff
 #define NUM_SAMPLES         512          // Must be a power of 2
-#define SAMPLING_FREQ   8192         // Hz, must be 40000 or less due to ADC conversion time. Determines maximum frequency that can be analysed by the FFT Fmax=sampleF/2.
+#define SAMPLING_FREQ   16000         // Hz, must be 40000 or less due to ADC conversion time. Determines maximum frequency that can be analysed by the FFT Fmax=sampleF/2.
 
 /*
  * Function:  printBins
