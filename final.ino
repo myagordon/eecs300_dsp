@@ -137,7 +137,7 @@ static int  sensor_status = 0; // Used only where we need to propagate status
 
 // Method 2 peak-detection parameters
 #define MY_MIN_MAG         3000000   // Minimum FFT magnitude for a peak to count
-#define MY_PEAK_FACTOR           2   // Peak must be >= this multiple of the band average
+#define MY_PEAK_FACTOR           2.5   // Peak must be >= this multiple of the band average
 #define MY_MIN_PEAK_SPACING  ((int)(300.0 * FFT_NUM_SAMPLES / SAMPLING_FREQ))  // ~300 Hz in bins
 
 // Method 1: Target Band (900-1600 Hz)
