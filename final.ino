@@ -133,11 +133,11 @@ static int  sensor_status = 0; // Used only where we need to propagate status
 
 #define I2S_READ_LEN                128   // Samples read from DMA per fftloop() call
 #define REQUIRED_CONSECUTIVE_FRAMES   5   // Method 1: consecutive detections to confirm
-#define REQUIRED_CONSECUTIVE_FRAMES_2 20  // Method 2: consecutive detections to confirm
+#define REQUIRED_CONSECUTIVE_FRAMES_2 15  // Method 2: consecutive detections to confirm
 
 // Method 2 peak-detection parameters
 #define MY_MIN_MAG         3000000   // Minimum FFT magnitude for a peak to count
-#define MY_PEAK_FACTOR           2.5   // Peak must be >= this multiple of the band average
+#define MY_PEAK_FACTOR           2   // Peak must be >= this multiple of the band average
 #define MY_MIN_PEAK_SPACING  ((int)(300.0 * FFT_NUM_SAMPLES / SAMPLING_FREQ))  // ~300 Hz in bins
 
 // Method 1: Target Band (900-1600 Hz)
@@ -475,8 +475,8 @@ void fftloop()
 
   // ── Debug output (uncomment printBins for full table) ──
   // printBins(bins);
-  Serial.printf("[FFT] ratio=%.2f consec1=%d | peaks=%d consec2=%d | siren1=%d siren2=%d\n",
-                ratio, method1_consec, peak_count, method2_consec,
+  Serial.printf("[FFT] ratio_total=%.2f ratio_lower=%.2f consec1=%d | peaks=%d consec2=%d | siren1=%d siren2=%d\n",
+                ratio_total, ratio_lower, method1_consec, peak_count, method2_consec,
                 (int)sirenDetected, (int)sirenDetected2);
 }
 /* ═══════════════════════════════════════════════════════════════════════════
