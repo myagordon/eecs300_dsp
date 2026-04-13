@@ -133,7 +133,7 @@ static int  sensor_status = 0; // Used only where we need to propagate status
 
 #define I2S_READ_LEN                128   // Samples read from DMA per fftloop() call
 #define REQUIRED_CONSECUTIVE_FRAMES   5   // Method 1: consecutive detections to confirm
-#define REQUIRED_CONSECUTIVE_FRAMES_2 10  // Method 2: consecutive detections to confirm
+#define REQUIRED_CONSECUTIVE_FRAMES_2 7  // Method 2: consecutive detections to confirm
 
 // Method 2 peak-detection parameters
 #define MY_MIN_MAG         3000000   // Minimum FFT magnitude for a peak to count
